@@ -29,3 +29,10 @@ To manually add the repository, please follow the steps outlined on the [Home As
 ## Add-ons provided by this repository
 
 &#10003;  [VirtualHere](https://github.com/calhoward/homeassistant-addons/tree/main/virtualhere) : Allows USB devices to be used remotely over a network just as if they were locally connected!
+
+## Support
+
+Got questions? There are a few ways to get answers:
+
+- The Home Assistant Community Forum
+- The issues list on this repository
