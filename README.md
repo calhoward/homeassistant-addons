@@ -6,6 +6,7 @@
 [donation-badge]: https://img.shields.io/badge/Buy%20me%20a%20coffee%20(no%20paypal)-%23d32f2f?logo=buy-me-a-coffee&style=flat&logoColor=white
 [paypal-badge]: https://img.shields.io/badge/Buy%20me%20a%20coffee%20with%20Paypal-0070BA?logo=paypal&style=flat&logoColor=white
 
+_Thanks to everyone who has starred my repo! Consider starring if you find any of my add-ons useful._
 [![Stargazers repo roster for @calhoward/homeassistant-addons](https://reporoster.com/stars/calhoward/homeassistant-addons)](https://github.com/calhoward/homeassistant-addons/stargazers)
 
 ## About
