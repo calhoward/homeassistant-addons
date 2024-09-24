@@ -1,5 +1,7 @@
 # Home Assistant add-ons: calhoward
 
+<!-- markdownlint-disable MD033 -->
+
 [![Donate][donation-badge]](https://www.buymeacoffee.com/calhoward)
 [![Donate][paypal-badge]](https://www.paypal.com/donate/?business=JXWQTX6EUJVBU&no_recurring=0&currency_code=USD)
 
