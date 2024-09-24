@@ -1,5 +1,3 @@
-![VirtualHere logo]([https://www.virtualhere.com/sites/default/files/VirtualHere-LOGO-WHITE_2.png](https://play-lh.googleusercontent.com/UGhZqiLNZmVTPTXzkqO6nypCud1SEDBP81wbtuxZsUZwGeBXNnNNuBDLXpK6R3sPYQ=w480-h960))
-
 # Home Assistant add-on: VirtualHere
 [![Donate][donation-badge]](https://www.buymeacoffee.com/calhoward)
 [![Donate][paypal-badge]](https://www.paypal.com/donate/?business=JXWQTX6EUJVBU&no_recurring=0&currency_code=USD)
