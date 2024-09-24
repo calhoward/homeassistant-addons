@@ -23,5 +23,6 @@ To manually add the repository, please follow the steps outlined on the [Home As
 [repository-url]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fcalhoward%2Fhomeassistant-addons
 
 
+## Home Assistant add-ons provided by this repository
 
-
+&#10003; (VirtualHere)[https://github.com/calhoward/homeassistant-addons/tree/main/virtualhere]: Allows USB devices to be used remotely over a network just as if they were locally connected!
