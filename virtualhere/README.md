@@ -20,6 +20,7 @@ This addon is based on the docker image https://github.com/calhoward/docker-virt
 Installing this add-on is simple and follows the same process as installing any other add-on.
 
 1. Add my add-ons repository to your home assistant instance (in supervisor addons store at top right, or click button below if you have configured my HA)
+   
    [![Add repository on my Home Assistant][repository-badge]][repository-url]
 2. Install this add-on.
 3. Click the `Save` button to store your configuration.
