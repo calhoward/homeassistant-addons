@@ -11,7 +11,7 @@
 
 Home Assistant enables users to create and share add-on repositories, making it simple to distribute custom add-ons within the Home Assistant ecosystem. This repository is one such collection, offering supplementary add-ons to enhance your Home Assistant setup.
 
-The main objective of this project is to offer Home Assistant users high-quality add-ons that elevate the capabilities of their smart home automation.
+This collection of add-ons was created because I needed solutions that didn’t exist, and I wanted to share them with others who might find them useful too. Feel free to submit a pull request if you have any suggestions.
 
 ## Installation
 
