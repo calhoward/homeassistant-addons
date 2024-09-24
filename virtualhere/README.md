@@ -12,7 +12,7 @@
 
 ---
 
-[VirtualHere](https://sonarr.tv/](https://www.virtualhere.com/) allows USB devices to be used remotely over a network just as if they were locally connected!
+[VirtualHere](https://www.virtualhere.com/) allows USB devices to be used remotely over a network just as if they were locally connected!
 This addon is based on the docker image https://github.com/calhoward/docker-virtualhere
 
 ## Installation
