@@ -1,4 +1,4 @@
-# Home Assistant add-on: VirtualHere
+# Home Assistant add-on: VirtualHere Server
 [![Donate][donation-badge]](https://www.buymeacoffee.com/calhoward)
 [![Donate][paypal-badge]](https://www.paypal.com/donate/?business=JXWQTX6EUJVBU&no_recurring=0&currency_code=USD)
 
@@ -11,7 +11,7 @@
 
 [VirtualHere](https://www.virtualhere.com/) allows USB devices to be used remotely over a network just as if they were locally connected!
 
-This addon is based on the docker image https://github.com/calhoward/docker-virtualhere.
+This addon is based on the docker image https://github.com/calhoward/docker-virtualhere-server.
 
 
 ## Installation
@@ -34,4 +34,4 @@ Installing this add-on is simple and follows the same process as installing any 
 
 ## Support
 
-Create an issue on Github for help
+Create an issue on Github for help.
