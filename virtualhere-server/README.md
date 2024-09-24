@@ -29,7 +29,7 @@ Installing this add-on is simple and follows the same process as installing any 
 
 ## Configuration
 
-- tbd -
+WIP
 
 
 ## Support
