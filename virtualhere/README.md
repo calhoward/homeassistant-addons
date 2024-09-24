@@ -1,3 +1,4 @@
+![VirtualHere logo](https://www.virtualhere.com/sites/default/files/VirtualHere-LOGO-WHITE_2.png)
 
 # Home Assistant add-on: VirtualHere
 [![Donate][donation-badge]](https://www.buymeacoffee.com/calhoward)
