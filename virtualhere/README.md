@@ -12,7 +12,8 @@
 
 [VirtualHere](https://www.virtualhere.com/) allows USB devices to be used remotely over a network just as if they were locally connected!
 
-This addon is based on the docker image https://github.com/calhoward/docker-virtualhere
+This addon is based on the docker image https://github.com/calhoward/docker-virtualhere.
+
 
 ## Installation
 
@@ -25,9 +26,11 @@ Installing this add-on is simple and follows the same process as installing any 
 4. Set the add-on options to your preferences
 5. Start the add-on.
 
+
 ## Configuration
 
 - tbd -
+
 
 ## Support
 
