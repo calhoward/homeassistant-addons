@@ -1,7 +1,5 @@
 # Home Assistant add-ons: calhoward
 
-<!-- markdownlint-disable MD033 -->
-
 [![Donate][donation-badge]](https://www.buymeacoffee.com/calhoward)
 [![Donate][paypal-badge]](https://www.paypal.com/donate/?business=JXWQTX6EUJVBU&no_recurring=0&currency_code=USD)
 
@@ -22,6 +20,7 @@ The main objective of this project is to offer Home Assistant users high-quality
 To manually add the repository, please follow the steps outlined on the [Home Assistant website](https://home-assistant.io/hassio/installing_third_party_addons). Use the following URL to add this repository: https://github.com/calhoward/homeassistant-addons
 
 [repository-badge]: https://img.shields.io/badge/Add%20repository%20to%20my-Home%20Assistant-41BDF5?logo=home-assistant&style=for-the-badge
+[repository-url]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fcalhoward%2Fhomeassistant-addons
 
 
 
