@@ -1,7 +1,7 @@
 name: "VirtualHere Server"
 version: "1.0.0"
 slug: "virtualhere_server"
-description: "VirtualHere USB Server to share USB devices over the network for Home Assistant"
+description: "VirtualHere USB Server to share USB devices over the network"
 arch:
   - aarch64
   - amd64
@@ -12,3 +12,9 @@ startup: services
 init: false
 ports:
   7575/tcp: 7575
+options:
+  devices: []
+schema:
+  devices:
+    description: "List of USB devices to expose (by ID or name)"
+    type: list
