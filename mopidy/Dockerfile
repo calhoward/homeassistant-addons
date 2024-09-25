@@ -3,26 +3,18 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-# Install dependencies using Alpine's apk with correct package names
+# Install core dependencies using apk
 RUN apk add --no-cache \
     python3 \
     py3-pip \
     py3-setuptools \
+    curl \
     gstreamer \
-    gstreamer-plugins-base \
-    gstreamer-plugins-good \
-    gstreamer-plugins-bad \
-    gstreamer-plugins-ugly \
-    gstreamer-pulseaudio \
-    gstreamer-libav \
-    gstreamer-tools \
-    curl
+    gst-plugins-base \
+    gst-plugins-good
 
 # Install Mopidy and core extensions using pip
 RUN pip3 install mopidy mopidy-spotify mopidy-tidal mopidy-local
-
-# Create Mopidy configuration directory
-RUN mkdir -p /etc/mopidy
 
 # Copy run script
 COPY run.sh /run.sh
