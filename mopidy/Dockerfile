@@ -25,6 +25,14 @@ RUN apk add --no-cache \
     gst-plugins-good \
     gst-libav
 
+# Install libspotify manually
+RUN curl -L -o libspotify.tar.gz https://github.com/mopidy/libspotify-deb/raw/master/libspotify-12.1.51-Linux-x86_64-release.tar.gz && \
+    tar xzf libspotify.tar.gz && \
+    mv libspotify-12.1.51-Linux-x86_64-release /usr/local/libspotify && \
+    ln -s /usr/local/libspotify/lib/libspotify.so /usr/lib/libspotify.so && \
+    ln -s /usr/local/libspotify/include/libspotify /usr/include/libspotify && \
+    rm libspotify.tar.gz
+
 # Create a virtual environment for Mopidy
 RUN python3 -m venv /opt/mopidy
 
