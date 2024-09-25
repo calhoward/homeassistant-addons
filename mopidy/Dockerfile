@@ -17,18 +17,17 @@ RUN apk add --no-cache \
     libffi-dev \
     openssl-dev \
     curl \
-    libcurl \
+    curl-dev \
     glib \
     glib-dev \
     gstreamer \
     gst-plugins-base \
     gst-plugins-good \
-    gst-libav \
-    libcurl-dev
+    gst-libav
 
 # Skip upgrading pip, use the system-provided version
-# Install Mopidy and its extensions using pip3 with verbose logging
-RUN pip3 install --verbose mopidy mopidy-spotify mopidy-tidal mopidy-local
+# Install Mopidy and its extensions using pip3
+RUN pip3 install mopidy mopidy-spotify mopidy-tidal mopidy-local
 
 # Copy run script
 COPY run.sh /run.sh
