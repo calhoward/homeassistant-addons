@@ -3,21 +3,22 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-# Install dependencies
-RUN apt-get update && \
-    apt-get install -y \
-    python3 python3-pip python3-dev libffi-dev \
-    libssl-dev libjpeg-dev zlib1g-dev \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-bad \
-    gstreamer1.0-plugins-ugly \
-    gstreamer1.0-pulseaudio \
-    gstreamer1.0-tools \
-    curl && \
-    apt-get clean
+# Install dependencies using Alpine's apk
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    py3-setuptools \
+    gstreamer \
+    gst-plugins-base \
+    gst-plugins-good \
+    gst-plugins-bad \
+    gst-plugins-ugly \
+    gst-plugins-pulseaudio \
+    gst-libav \
+    gst-tools \
+    curl
 
-# Install Mopidy and some core extensions
+# Install Mopidy and core extensions using pip
 RUN pip3 install mopidy mopidy-spotify mopidy-tidal mopidy-local
 
 # Copy run script
