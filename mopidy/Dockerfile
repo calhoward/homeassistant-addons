@@ -11,9 +11,21 @@ RUN apk add --no-cache \
     curl \
     gstreamer \
     gst-plugins-base \
-    gst-plugins-good
+    gst-plugins-good \
+    build-base \
+    gcc \
+    g++ \
+    libc-dev \
+    pkgconfig \
+    python3-dev \
+    libffi-dev \
+    libcurl \
+    openssl-dev
 
-# Install Mopidy and core extensions using pip
+# Upgrade pip to the latest version to avoid compatibility issues
+RUN pip3 install --upgrade pip
+
+# Install Mopidy and its extensions using pip
 RUN pip3 install mopidy mopidy-spotify mopidy-tidal mopidy-local
 
 # Copy run script
