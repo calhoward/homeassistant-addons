@@ -25,9 +25,11 @@ RUN apk add --no-cache \
     gst-plugins-good \
     gst-libav
 
-# Skip upgrading pip, use the system-provided version
-# Install Mopidy and its extensions using pip3
-RUN pip3 install mopidy mopidy-spotify mopidy-tidal mopidy-local
+# Create a virtual environment for Mopidy
+RUN python3 -m venv /opt/mopidy
+
+# Activate the virtual environment and install Mopidy and its extensions
+RUN /opt/mopidy/bin/pip install --no-cache-dir mopidy mopidy-spotify mopidy-tidal mopidy-local
 
 # Copy run script
 COPY run.sh /run.sh
@@ -36,4 +38,5 @@ RUN chmod a+x /run.sh
 # Expose Mopidy port
 EXPOSE 6680
 
-CMD ["/run.sh"]
+# Use the virtual environment to run Mopidy
+CMD ["/opt/mopidy/bin/mopidy", "--config", "/etc/mopidy/mopidy.conf"]
