@@ -29,7 +29,7 @@ RUN apk add --no-cache \
     gst-libav \
     gst-plugins-base-tools
 
-# Install Mopidy and Spotify extension
+# Install Mopidy and Spotify extension 
 RUN pip3 install mopidy mopidy-spotify
 
 # Copy run script
