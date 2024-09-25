@@ -31,8 +31,9 @@ RUN apk add --no-cache \
 # Create a Python virtual environment
 RUN python3 -m venv /opt/mopidy-venv
 
-# Activate the virtual environment and install Mopidy and Spotify extension
-RUN /opt/mopidy-venv/bin/pip install mopidy mopidy-spotify
+# Activate the virtual environment and install Mopidy and modern mopidy-spotify
+# Use mopidy-spotify version that uses Web API and librespot (skip pyspotify)
+RUN /opt/mopidy-venv/bin/pip install mopidy 'mopidy-spotify>=4.0.0'
 
 # Copy run script
 COPY run.sh /run.sh
