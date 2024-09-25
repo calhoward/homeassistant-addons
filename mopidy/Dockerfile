@@ -26,10 +26,9 @@ RUN apk add --no-cache \
     gst-plugins-bad \
     gst-plugins-ugly \
     pulseaudio \
-    gst-libav \
-    gst-plugins-base-tools
+    gst-libav
 
-# Install Mopidy and Spotify extension 
+# Install Mopidy and Spotify extension
 RUN pip3 install mopidy mopidy-spotify
 
 # Copy run script
