@@ -3,7 +3,7 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-# Install core dependencies using apk
+# Install core dependencies using Alpine apk
 RUN apk add --no-cache \
     python3 \
     py3-pip \
@@ -22,8 +22,12 @@ RUN apk add --no-cache \
     libcurl \
     openssl-dev
 
-# Upgrade pip to the latest version to avoid compatibility issues
-RUN pip3 install --upgrade pip
+# Reinstall pip directly using the apk package manager to avoid issues
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/latest-stable/community py3-pip
+
+# Make sure pip is available and upgrade if necessary
+RUN python3 -m ensurepip --upgrade && \
+    pip3 install --no-cache --upgrade pip
 
 # Install Mopidy and its extensions using pip
 RUN pip3 install mopidy mopidy-spotify mopidy-tidal mopidy-local
