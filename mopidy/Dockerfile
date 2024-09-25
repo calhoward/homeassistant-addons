@@ -25,10 +25,10 @@ RUN apk add --no-cache \
     gst-plugins-good \
     gst-libav
 
-# Download and install libspotify manually from an alternative trusted source
-RUN curl -L -o libspotify.tar.gz https://repository-origin.spotify.com/pool/non-free/libspotify/libspotify_12.1.103-0debian.tar.gz && \
+# Download and install libspotify from a valid source
+RUN curl -L -o libspotify.tar.gz https://github.com/mopidy/libspotify-deb/releases/download/v12.1.51/libspotify_12.1.51.orig-amd64.tar.gz && \
     tar xzf libspotify.tar.gz && \
-    mv libspotify /usr/local/libspotify && \
+    mv libspotify-12.1.51 /usr/local/libspotify && \
     ln -s /usr/local/libspotify/lib/libspotify.so /usr/lib/libspotify.so && \
     ln -s /usr/local/libspotify/include/libspotify /usr/include/libspotify && \
     rm libspotify.tar.gz
