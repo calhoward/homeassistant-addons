@@ -1,0 +1,20 @@
+name: Mopidy
+version: "1.0"
+slug: mopidy
+description: "Mopidy server for Home Assistant"
+arch:
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+startup: application
+boot: auto
+host_network: true
+ports:
+  6680/tcp: 6680
+options:
+  spotify_username: ""
+  spotify_password: ""
+schema:
+  spotify_username: str
+  spotify_password: str
