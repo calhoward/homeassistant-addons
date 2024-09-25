@@ -23,18 +23,14 @@ RUN apk add --no-cache \
     gstreamer \
     gst-plugins-base \
     gst-plugins-good \
+    gst-plugins-bad \
+    gst-plugins-ugly \
+    gst-plugins-pulse \
     gst-libav \
-    gstreamer1.0-plugins-bad \
-    gstreamer1.0-plugins-ugly \
-    gstreamer1.0-pulseaudio \
-    gstreamer1.0-tools
+    gst-tools
 
 # Install Mopidy and Spotify extension
-RUN python3 -m pip install mopidy mopidy-spotify
-
-# Install GStreamer spotify plugin for audio playback
-RUN git clone https://github.com/mopidy/mopidy-spotify && cd mopidy-spotify && \
-    make && make install
+RUN pip3 install mopidy mopidy-spotify
 
 # Copy run script
 COPY run.sh /run.sh
