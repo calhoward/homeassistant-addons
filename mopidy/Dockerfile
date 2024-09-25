@@ -28,8 +28,11 @@ RUN apk add --no-cache \
     pulseaudio \
     gst-libav
 
-# Install Mopidy and Spotify extension
-RUN pip3 install mopidy mopidy-spotify
+# Create a Python virtual environment
+RUN python3 -m venv /opt/mopidy-venv
+
+# Activate the virtual environment and install Mopidy and Spotify extension
+RUN /opt/mopidy-venv/bin/pip install mopidy mopidy-spotify
 
 # Copy run script
 COPY run.sh /run.sh
@@ -38,5 +41,5 @@ RUN chmod a+x /run.sh
 # Expose Mopidy port
 EXPOSE 6680
 
-# Run Mopidy
-CMD ["/opt/mopidy/bin/mopidy", "--config", "/etc/mopidy/mopidy.conf"]
+# Use the virtual environment to run Mopidy
+CMD ["/opt/mopidy-venv/bin/mopidy", "--config", "/etc/mopidy/mopidy.conf"]
