@@ -3,7 +3,7 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-# Install core dependencies and GStreamer plugins
+# Install dependencies for Mopidy and GStreamer
 RUN apk add --no-cache \
     python3 \
     py3-pip \
@@ -31,16 +31,15 @@ RUN apk add --no-cache \
 # Create a Python virtual environment
 RUN python3 -m venv /opt/mopidy-venv
 
-# Activate the virtual environment and install Mopidy and modern mopidy-spotify
-# Use mopidy-spotify version that uses Web API and librespot (skip pyspotify)
-RUN /opt/mopidy-venv/bin/pip install mopidy 'mopidy-spotify>=4.0.0'
+# Activate the virtual environment and install Mopidy
+RUN /opt/mopidy-venv/bin/pip install mopidy
 
 # Copy run script
 COPY run.sh /run.sh
 RUN chmod a+x /run.sh
 
-# Expose Mopidy port
+# Expose Mopidy port (default: 6680 for HTTP frontend)
 EXPOSE 6680
 
-# Use the virtual environment to run Mopidy
-CMD ["/opt/mopidy-venv/bin/mopidy", "--config", "/etc/mopidy/mopidy.conf"]
+# Run Mopidy using the virtual environment
+CMD ["/run.sh"]
