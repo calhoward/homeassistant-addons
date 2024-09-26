@@ -1,26 +1,21 @@
-name: "Mopidy Add-On"
+name: Mopidy
 version: "1.0.0"
-slug: "mopidy"
-description: "Mopidy music server with Ingress support"
+slug: mopidy
+description: Mopidy music server for Home Assistant
 arch:
-  - aarch64
   - amd64
-  - armhf
   - armv7
+  - aarch64
+  - armhf
   - i386
-startup: "services"
-boot: "auto"
+startup: services
+boot: auto
 ingress: true
-ingress_port: 6680
-panel_icon: "mdi:music-note"
-panel_title: "Mopidy"
-ports: {}
-map:
-  - config:rw
-  - ssl:ro
-  - media:rw
-  - share:rw
-  - addons:rw
-  - data:rw
+ingress_port: 8099
+ingress_entry: /
+ingress_stream: false
+panel_icon: "mdi:music"
+ports:
+  6680/tcp: null
 options: {}
 schema: {}
