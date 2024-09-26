@@ -5,7 +5,7 @@ FROM $BUILD_FROM
 # Set environment variables
 ENV LANG C.UTF-8
 
-# Install necessary packages including GStreamer, GObject introspection, and development tools
+# Install necessary packages for GStreamer, GObject Introspection, and Mopidy dependencies
 RUN apk add --no-cache \
     python3 \
     py3-pip \
@@ -30,16 +30,20 @@ RUN apk add --no-cache \
     gst-plugins-ugly \
     pulseaudio \
     gst-libav \
-    bash
+    bash \
+    gobject-introspection-dev \
+    cairo-dev \
+    py-cairo
 
 # Install PyGObject (Python bindings for GObject)
-RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
+RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
+    pygobject3 \
     py3-gobject3
 
 # Create a virtual environment for Mopidy and activate it
 RUN python3 -m venv /opt/mopidy-venv
 
-# Activate the virtual environment and install Mopidy inside it
+# Activate the virtual environment and install Mopidy
 RUN . /opt/mopidy-venv/bin/activate && \
     pip install --upgrade pip && \
     pip install mopidy
