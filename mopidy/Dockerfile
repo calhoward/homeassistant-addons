@@ -30,6 +30,8 @@ RUN apk add --no-cache \
     gst-plugins-ugly \
     pulseaudio \
     gst-libav \
+    py3-gobject3 \
+    py3-gobject3-dev \
     bash
 
 # Create a virtual environment for Mopidy and activate it
