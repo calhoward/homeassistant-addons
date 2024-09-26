@@ -31,14 +31,15 @@ RUN apk add --no-cache \
     pulseaudio \
     gst-libav \
     bash \
-    gobject-introspection-dev \
-    cairo-dev \
-    py-cairo
+    cairo-dev
 
-# Install PyGObject (Python bindings for GObject)
-RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
-    pygobject3 \
-    py3-gobject3
+# Install necessary tools for building PyGObject
+RUN apk add --no-cache \
+    gobject-introspection-dev \
+    gtk+3.0-dev \
+    cairo-dev \
+    pango-dev \
+    atk-dev
 
 # Create a virtual environment for Mopidy and activate it
 RUN python3 -m venv /opt/mopidy-venv
@@ -47,6 +48,11 @@ RUN python3 -m venv /opt/mopidy-venv
 RUN . /opt/mopidy-venv/bin/activate && \
     pip install --upgrade pip && \
     pip install mopidy
+
+# Compile PyGObject manually
+RUN . /opt/mopidy-venv/bin/activate && \
+    pip install pycairo && \
+    pip install pygobject
 
 # Ensure the virtual environment is always activated when running Mopidy
 ENV PATH="/opt/mopidy-venv/bin:$PATH"
