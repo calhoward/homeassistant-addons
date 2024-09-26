@@ -5,7 +5,7 @@ FROM $BUILD_FROM
 # Set environment variables
 ENV LANG C.UTF-8
 
-# Install necessary packages including GStreamer and development tools
+# Install necessary packages including GStreamer, GObject introspection, and development tools
 RUN apk add --no-cache \
     python3 \
     py3-pip \
@@ -22,7 +22,7 @@ RUN apk add --no-cache \
     curl-dev \
     glib \
     glib-dev \
-    gobject-introspection-dev \
+    gobject-introspection \
     gstreamer \
     gst-plugins-base \
     gst-plugins-good \
@@ -30,13 +30,12 @@ RUN apk add --no-cache \
     gst-plugins-ugly \
     pulseaudio \
     gst-libav \
-    py3-pygobject3-dev \
     bash
 
 # Create a virtual environment for Mopidy and activate it
 RUN python3 -m venv /opt/mopidy-venv
 
-# Activate virtual environment and install Mopidy inside it
+# Activate the virtual environment and install Mopidy inside it
 RUN . /opt/mopidy-venv/bin/activate && \
     pip install --upgrade pip && \
     pip install mopidy
