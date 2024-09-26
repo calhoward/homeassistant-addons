@@ -38,8 +38,7 @@ RUN apk add --no-cache \
     gobject-introspection-dev \
     gtk+3.0-dev \
     cairo-dev \
-    pango-dev \
-    atk-dev
+    pango-dev
 
 # Create a virtual environment for Mopidy and activate it
 RUN python3 -m venv /opt/mopidy-venv
