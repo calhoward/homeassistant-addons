@@ -2,14 +2,12 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Install Mopidy and its dependencies from Alpine
+# Install Mopidy and dependencies
 RUN apk add --no-cache \
     mopidy \
     gst-plugins-base \
     gst-plugins-good \
-    gst-plugins-bad \
     gst-plugins-ugly \
-    gst-libav \
     py3-dbus \
     py3-gst \
     py3-libxml2 \
@@ -20,15 +18,15 @@ RUN apk add --no-cache \
     pulseaudio \
     bash
 
-# Set up Mopidy configuration directory
-RUN mkdir -p /var/lib/mopidy/.config/mopidy
+# Set up Mopidy config and data directories
+RUN mkdir -p /var/lib/mopidy/.config/mopidy /var/lib/mopidy/.local/share/mopidy
 
-# Copy the run script to manage the service
+# Expose Mopidy port for external access (if needed)
+EXPOSE 6680
+
+# Copy the service script to manage Mopidy via s6-overlay
 COPY run.sh /etc/services.d/mopidy/run
 RUN chmod +x /etc/services.d/mopidy/run
 
-# Expose Mopidy web interface port for ingress (8099)
-EXPOSE 8099
-
-# Use s6-overlay to manage services
+# Use s6-overlay for process management
 ENTRYPOINT [ "/init" ]

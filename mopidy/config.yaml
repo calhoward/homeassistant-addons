@@ -13,9 +13,8 @@ boot: auto
 ingress: true
 ingress_port: 8099
 ingress_entry: /
-ingress_stream: false
-panel_icon: "mdi:music"
 ports:
   6680/tcp: null
+panel_icon: "mdi:music"
 options: {}
 schema: {}
