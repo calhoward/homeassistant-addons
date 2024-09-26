@@ -1,9 +1,11 @@
+# Define the base image
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
+# Set environment variables
 ENV LANG C.UTF-8
 
-# Install dependencies for Mopidy and GStreamer
+# Install necessary packages including GStreamer for audio playback
 RUN apk add --no-cache \
     python3 \
     py3-pip \
@@ -28,18 +30,21 @@ RUN apk add --no-cache \
     pulseaudio \
     gst-libav
 
-# Create a Python virtual environment
+# Create a Python virtual environment for Mopidy
 RUN python3 -m venv /opt/mopidy-venv
 
 # Activate the virtual environment and install Mopidy
 RUN /opt/mopidy-venv/bin/pip install mopidy
 
-# Copy run script
-COPY run.sh /run.sh
-RUN chmod a+x /run.sh
+# Create service directory for s6-overlay to manage Mopidy as a service
+RUN mkdir -p /etc/services.d/mopidy
 
-# Expose Mopidy port (default: 6680 for HTTP frontend)
+# Copy the run script into the service directory
+COPY run.sh /etc/services.d/mopidy/run
+RUN chmod +x /etc/services.d/mopidy/run
+
+# Expose the Mopidy web frontend port (default 6680)
 EXPOSE 6680
 
-# Run Mopidy using the virtual environment
-CMD ["/run.sh"]
+# Use s6-overlay to manage services
+ENTRYPOINT [ "/init" ]
