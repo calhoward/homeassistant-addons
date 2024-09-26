@@ -30,9 +30,11 @@ RUN apk add --no-cache \
     gst-plugins-ugly \
     pulseaudio \
     gst-libav \
-    py3-gobject3 \
-    py3-gobject3-dev \
     bash
+
+# Install PyGObject (Python bindings for GObject)
+RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
+    py3-gobject3
 
 # Create a virtual environment for Mopidy and activate it
 RUN python3 -m venv /opt/mopidy-venv
