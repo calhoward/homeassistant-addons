@@ -1,18 +1,26 @@
-name: Mopidy
+name: "Mopidy Add-On"
 version: "1.0.0"
-slug: mopidy
-description: A music server that plays music from local storage, network resources, and the internet.
+slug: "mopidy"
+description: "Mopidy music server with Ingress support"
 arch:
-  - armv7
-  - armhf
   - aarch64
   - amd64
+  - armhf
+  - armv7
   - i386
 startup: "services"
-init: false
-ports:
-  6680/tcp: 6680
+boot: "auto"
+ingress: true
+ingress_port: 6680
+panel_icon: "mdi:music-note"
+panel_title: "Mopidy"
+ports: {}
 map:
-  - config
+  - config:rw
+  - ssl:ro
+  - media:rw
+  - share:rw
+  - addons:rw
+  - data:rw
 options: {}
 schema: {}
