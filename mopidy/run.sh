@@ -4,5 +4,5 @@
 export XDG_CONFIG_HOME="/var/lib/mopidy/.config"
 export XDG_DATA_HOME="/var/lib/mopidy/.local/share"
 
-# Start Mopidy as the main process (PID 1)
+# Start Mopidy
 exec mopidy --config /var/lib/mopidy/.config/mopidy/mopidy.conf
