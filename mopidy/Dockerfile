@@ -5,7 +5,7 @@ FROM $BUILD_FROM
 # Set environment variables
 ENV LANG C.UTF-8
 
-# Install necessary packages including GStreamer for audio playback
+# Install necessary packages including GStreamer and development tools
 RUN apk add --no-cache \
     python3 \
     py3-pip \
@@ -22,19 +22,27 @@ RUN apk add --no-cache \
     curl-dev \
     glib \
     glib-dev \
+    gobject-introspection-dev \
     gstreamer \
     gst-plugins-base \
     gst-plugins-good \
     gst-plugins-bad \
     gst-plugins-ugly \
     pulseaudio \
-    gst-libav
+    gst-libav \
+    py3-pygobject3-dev \
+    bash
 
-# Create a Python virtual environment for Mopidy
+# Create a virtual environment for Mopidy and activate it
 RUN python3 -m venv /opt/mopidy-venv
 
-# Activate the virtual environment and install Mopidy
-RUN /opt/mopidy-venv/bin/pip install mopidy
+# Activate virtual environment and install Mopidy inside it
+RUN . /opt/mopidy-venv/bin/activate && \
+    pip install --upgrade pip && \
+    pip install mopidy
+
+# Ensure the virtual environment is always activated when running Mopidy
+ENV PATH="/opt/mopidy-venv/bin:$PATH"
 
 # Create service directory for s6-overlay to manage Mopidy as a service
 RUN mkdir -p /etc/services.d/mopidy

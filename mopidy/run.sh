@@ -1,7 +1,3 @@
-#!/usr/bin/env bash
-
-# Activate virtual environment
-source /opt/mopidy-venv/bin/activate
-
-# Run Mopidy
-exec mopidy
+#!/usr/bin/with-contenv bash
+# Start Mopidy with the virtual environment activated
+exec /opt/mopidy-venv/bin/mopidy
