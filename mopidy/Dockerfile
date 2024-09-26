@@ -31,5 +31,5 @@ RUN chmod +x /etc/services.d/mopidy/run /etc/services.d/mopidy/finish
 # Expose the Mopidy HTTP port (default: 6680)
 EXPOSE 6680
 
-# Entry point for s6-overlay
+# Use s6-overlay as entrypoint
 ENTRYPOINT [ "/init" ]
