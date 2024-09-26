@@ -4,5 +4,5 @@
 export XDG_CONFIG_HOME="/var/lib/mopidy/.config"
 export XDG_DATA_HOME="/var/lib/mopidy/.local/share"
 
-# Start Mopidy
+# Start Mopidy and keep it running in the background
 exec mopidy --config /var/lib/mopidy/.config/mopidy/mopidy.conf

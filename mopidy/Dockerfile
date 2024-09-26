@@ -19,12 +19,14 @@ RUN apk add --no-cache \
     pulseaudio \
     bash
 
-# Set up directories for Mopidy
+# Set up Mopidy directories
 RUN mkdir -p /var/lib/mopidy/.config/mopidy /var/lib/mopidy/.local/share/mopidy
 
-# Copy the service run script
+# s6 overlay service setup
 COPY run.sh /etc/services.d/mopidy/run
-RUN chmod +x /etc/services.d/mopidy/run
+COPY finish.sh /etc/services.d/mopidy/finish
+
+RUN chmod +x /etc/services.d/mopidy/run /etc/services.d/mopidy/finish
 
 # Expose the Mopidy HTTP port (default: 6680)
 EXPOSE 6680
