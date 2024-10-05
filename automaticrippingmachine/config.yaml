@@ -8,7 +8,7 @@ arch:
   - amd64
   - i386
   - armhf
-startup: "delayed"  # Updated from "before" to "delayed"
+startup: "application"  # Updated from "delayed" to "application"
 boot: "auto"
 options: {}
 schema: {}
