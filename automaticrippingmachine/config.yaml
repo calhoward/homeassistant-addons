@@ -36,7 +36,7 @@ schema:
   tv_dir: str
   debug: bool
   log_level:
-    type: "select"
+    type: "list"
     options:
       - debug
       - info
@@ -45,7 +45,7 @@ schema:
   notify_on_success: bool
   notify_on_failure: bool
   notify_method:
-    type: "select"
+    type: "list"
     options:
       - email
       - webhook
