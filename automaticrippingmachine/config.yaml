@@ -1,29 +1,14 @@
-name: "Automatic Ripping Machine"
-version: "0.1.0"
-slug: "automatic_ripping_machine"
-description: "MVP Automatic Ripping Machine"
+name: Automatic Ripping Machine
+version: "1.0"
+slug: automatic_ripping_machine
+description: "Home Assistant add-on to run Automatic Ripping Machine (ARM)"
 arch:
   - aarch64
-  - amd64
-  - armhf
   - armv7
+  - amd64
   - i386
-startup: "application"
+  - armhf
+startup: "before"
 boot: "auto"
 options: {}
-schema:
-  log_level:
-    description: "Log level"
-    type: "select"
-    options:
-      - "debug"
-      - "info"
-      - "warning"
-      - "error"
-    default: "info"
-  notify_method:
-    description: "Notification method"
-    type: "select"
-    options:
-      - "webhook"
-    default: "webhook"
+schema: {}
