@@ -1,6 +1,6 @@
 #!/usr/bin/execlineb -P
 
-# Start ARM service using S6
+# Start the ARM service using S6
 with-contenv bash -c '
   set -e
   echo "Starting ARM service..."
