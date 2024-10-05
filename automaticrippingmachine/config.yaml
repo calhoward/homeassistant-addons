@@ -1,5 +1,5 @@
 name: Automatic Ripping Machine
-version: "1.0"
+version: "0.0.1"
 slug: automatic_ripping_machine
 description: "Home Assistant add-on to run Automatic Ripping Machine (ARM)"
 arch:
