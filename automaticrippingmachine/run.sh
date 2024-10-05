@@ -1,10 +1,8 @@
-#!/bin/bash
-# Barebones run script for ARM
+#!/usr/bin/env bash
+set -e
 
-echo "Starting ARM..."
+# Export necessary environment variables if needed
+# export SOME_VARIABLE=value
 
-# Monitor devices (dummy placeholder)
-while true; do
-  echo "ARM is running..."
-  sleep 60
-done
+# Start Automatic Ripping Machine
+exec /usr/local/bin/arm "$@"
