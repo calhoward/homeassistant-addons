@@ -12,3 +12,9 @@ startup: "application"
 boot: "auto"
 options: {}
 schema: {}
+
+# Allow the container privileged access to the host devices (e.g., DVD drive)
+privileged: true
+
+devices:
+  - /dev:/dev:r
