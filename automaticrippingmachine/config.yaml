@@ -1,7 +1,7 @@
 name: "Automatic Ripping Machine"
-version: "1.0.0"
+version: "0.1.0"
 slug: "automatic_ripping_machine"
-description: "Automates the ripping of BD/DVD discs and manages media files with full configurability."
+description: "Barebones ARM configuration"
 arch:
   - aarch64
   - amd64
@@ -10,55 +10,24 @@ arch:
   - i386
 startup: "application"
 boot: "auto"
-host_network: true
-options:
-  timezone: "YOUR_TIMEZONE"
-  media_dir: "/mnt/media"
-  movies_dir: "/mnt/media/movies"
-  music_dir: "/mnt/media/music"
-  tv_dir: "/mnt/media/tv"
-  debug: false
-  log_level: "info"
-  notify_on_success: true
-  notify_on_failure: true
-  notify_method: "email"
-  email_recipient: "your_email@example.com"
-  email_sender: "arm@example.com"
-  email_server: "smtp.example.com"
-  email_port: 587
-  email_username: "smtp_user"
-  email_password: "smtp_password"
+options: {}
 schema:
-  timezone: str
-  media_dir: str
-  movies_dir: str
-  music_dir: str
-  tv_dir: str
-  debug: bool
+  devices:
+    description: "List of paths to USB devices"
+    type: "list"
+    required: true
   log_level:
+    description: "Log level"
     type: "select"
     options:
       - "debug"
       - "info"
       - "warning"
       - "error"
-  notify_on_success: bool
-  notify_on_failure: bool
+    default: "info"
   notify_method:
+    description: "Notification method"
     type: "select"
     options:
-      - "email"
       - "webhook"
-  email_recipient: str
-  email_sender: str
-  email_server: str
-  email_port: int
-  email_username: str
-  email_password: str
-ports:
-  "5800/tcp": 5800
-devices:
-  - "/dev/sr0:/dev/sr0:rwm"
-map:
-  - config
-  - ssl
+    default: "webhook"
