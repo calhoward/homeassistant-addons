@@ -1,11 +1,11 @@
-# Use the official Automatic Ripping Machine Docker image
+# Use the official Automatic Ripping Machine Docker image as the base
 FROM automaticrippingmachine/automatic-ripping-machine:latest
 
-# Copy the run.sh script to handle configuration
-COPY run.sh /app/run.sh
+# Copy the run script into the container
+COPY run.sh /run.sh
 
-# Ensure the script is executable
-RUN chmod +x /app/run.sh
+# Make the run script executable
+RUN chmod +x /run.sh
 
-# Run the script
-CMD ["/app/run.sh"]
+# Set the entrypoint to the run script
+ENTRYPOINT ["/run.sh"]
