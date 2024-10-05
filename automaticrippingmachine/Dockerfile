@@ -11,8 +11,11 @@ RUN mkdir -p /etc/arm/config && \
 # Install compatible versions of flask, flask_sqlalchemy, and its dependencies
 RUN pip3 install werkzeug==1.0.1 flask==1.1.2 jinja2==2.11.3 itsdangerous==1.1.0 markupsafe==1.1.1 flask_sqlalchemy==2.4.4 sqlalchemy==1.3.23
 
-# Remove the udev initialization script to prevent starting it
-RUN rm /etc/my_init.d/start_udev.sh
+# Copy the run.sh startup script
+COPY run.sh /run.sh
 
-# Set the default entrypoint to ARM's built-in process manager
-CMD ["/sbin/my_init"]
+# Make the startup script executable
+RUN chmod +x /run.sh
+
+# Set the entrypoint to run the script
+ENTRYPOINT ["/run.sh"]
