@@ -34,19 +34,19 @@ schema:
   tv_dir: str
   debug: bool
   log_level:
-    type: str
+    type: "select"
     options:
-      - "debug"
-      - "info"
-      - "warning"
-      - "error"
+      - debug
+      - info
+      - warning
+      - error
   notify_on_success: bool
   notify_on_failure: bool
   notify_method:
-    type: str
+    type: "select"
     options:
-      - "email"
-      - "webhook"
+      - email
+      - webhook
   email_recipient: str
   email_sender: str
   email_server: str
@@ -60,5 +60,3 @@ devices:
 map:
   - config
   - ssl
-webui: "http://[HOST]:5800"
-ingress: true
