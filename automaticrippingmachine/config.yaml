@@ -13,13 +13,13 @@ boot: "auto"
 options: {}
 schema: {}
 
-# Define required Linux capabilities for the ARM add-on
+# Ensure device access and privileges for hardware interaction
 privileged:
   - SYS_ADMIN
   - SYS_RAWIO
   - SYS_RESOURCE
   - DAC_READ_SEARCH
 
-# Use the correct format for devices: a list of paths
+# Provide access to /dev for the container to detect devices like DVD drives
 devices:
   - /dev
