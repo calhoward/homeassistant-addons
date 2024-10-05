@@ -13,9 +13,12 @@ boot: "auto"
 options: {}
 schema: {}
 
-# Allow the container privileged access to the host devices (updated format)
+# Define required Linux capabilities for the ARM add-on
 privileged:
-  - true
+  - SYS_ADMIN
+  - SYS_RAWIO
+  - SYS_RESOURCE
+  - DAC_READ_SEARCH
 
 # Use the correct format for devices: a list of paths
 devices:
