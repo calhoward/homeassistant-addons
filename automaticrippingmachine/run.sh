@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
-# Automatic Ripping Machine (ARM) Add-on Run Script
+#!/bin/bash
+# Barebones run script for ARM
 
-echo "Starting Automatic Ripping Machine (ARM)..."
+echo "Starting ARM..."
 
-# Set timezone environment variable
-export TZ=${TZ}
-
-# Run ARM with the provided options from the Home Assistant config
-docker-entrypoint.sh
+# Monitor devices (dummy placeholder)
+while true; do
+  echo "ARM is running..."
+  sleep 60
+done
