@@ -6,6 +6,7 @@ arch:
   - amd64
   - armv7
   - aarch64
+  - i386
 startup: "application"
 boot: "auto"
 host_network: true
