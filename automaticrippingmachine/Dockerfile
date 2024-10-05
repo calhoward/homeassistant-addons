@@ -1,11 +1,12 @@
 # Use the official Automatic Ripping Machine Docker image as the base
 FROM automaticrippingmachine/automatic-ripping-machine:latest
 
-# Disable syslog-ng by removing its init script
+# Remove syslog-ng and udev to prevent errors
 RUN rm -f /etc/my_init.d/10_syslog-ng.init
+RUN rm -f /etc/my_init.d/start_udev.sh
 
-# Remove syslog-ng to prevent it from starting at all
-RUN apt-get remove -y syslog-ng-core
+# Optionally, remove the syslog-ng package entirely (if present)
+RUN apt-get remove -y syslog-ng-core || true
 
 # Create config directory and set correct permissions for ARM
 RUN mkdir -p /etc/arm/config && chown -R 1000:1000 /etc/arm
@@ -19,5 +20,5 @@ COPY run.sh /run.sh
 # Make the startup script executable
 RUN chmod +x /run.sh
 
-# Set the entrypoint to use /bin/bash (fallback to /run.sh)
+# Set the entrypoint to execute the run.sh script
 ENTRYPOINT ["/bin/bash", "/run.sh"]
