@@ -15,4 +15,4 @@ done
 echo "ARM web UI is ready."
 
 # Keep the container running
-wait
+# wait
