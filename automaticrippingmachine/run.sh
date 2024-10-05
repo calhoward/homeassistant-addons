@@ -7,7 +7,7 @@ echo "Starting ARM service..."
 
 # Wait for the ARM web UI to start
 echo "Waiting for ARM web UI to start..."
-while ! curl -s http://127.0.0.1:8080 > /dev/null; do
+while ! curl -s http://172.30.33.2:8080 > /dev/null; do
   sleep 2
 done
 
