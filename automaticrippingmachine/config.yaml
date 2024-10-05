@@ -6,7 +6,7 @@ arch:
   - amd64
   - armv7
   - aarch64
-  - i386
+  - x86_64
 startup: "application"
 boot: "auto"
 host_network: true
@@ -35,8 +35,8 @@ schema:
   tv_dir: str
   debug: bool
   log_level:
-    type: "select"
-    options:
+    type: "list"
+    items:
       - debug
       - info
       - warning
@@ -44,8 +44,8 @@ schema:
   notify_on_success: bool
   notify_on_failure: bool
   notify_method:
-    type: "select"
-    options:
+    type: "list"
+    items:
       - email
       - webhook
   email_recipient: str
