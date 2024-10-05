@@ -8,9 +8,10 @@ arch:
   - amd64
   - i386
   - armhf
-startup: "application"
+startup: "services"  # Adjusted startup type
 boot: "auto"
 ingress: true  # Enable ingress for the web UI
+watchdog: true  # Enable watchdog to monitor the add-on’s health
 
 panel_icon: "mdi:disc"  # Icon to show in the sidebar
 panel_title: "ARM Web UI"  # Title for the sidebar entry
