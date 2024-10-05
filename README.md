@@ -28,7 +28,7 @@ To manually add the repository, please follow the steps outlined on the [Home As
 
 ## Add-ons provided by this repository
 
-&#10003;  [VirtualHere Server](https://github.com/calhoward/homeassistant-addons/tree/main/virtualhere-server) : Allows USB devices to be used remotely over a network just as if they were locally connected!
+&#10003;  [Automatic Ripping Machine](https://github.com/calhoward/homeassistant-addons/tree/main/automaticrippingmachine) : detects the insertion of an optical disc, identifies the type of media, and autonomously performs the appropriate action.
 
 &#10003;  [Mopidy](https://github.com/calhoward/homeassistant-addons/tree/main/mopidy) : An extensible music server that plays music from various sources such as Spotify, Tidal, local files, and web radio.
 
