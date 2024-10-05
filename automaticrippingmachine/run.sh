@@ -1,20 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/with-contenv bash
 set -e
 
-# Start ARM
+# Start the ARM service
 echo "Starting ARM service..."
-
-# Start the ARM service in the background
 /sbin/my_init &
 
-# Wait until the ARM web UI is ready
+# Wait for the ARM web UI to start
 echo "Waiting for ARM web UI to start..."
 while ! curl -s http://127.0.0.1:8080 > /dev/null; do
   sleep 2
 done
 
-# Signal that the ARM web UI is ready
+# ARM web UI is now ready
 echo "ARM web UI is ready."
-
-# Keep the container running
-wait
