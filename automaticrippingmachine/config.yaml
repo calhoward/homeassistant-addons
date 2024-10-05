@@ -3,10 +3,11 @@ version: "1.0.0"
 slug: "automatic_ripping_machine"
 description: "Automates the ripping of BD/DVD discs and manages media files with full configurability."
 arch:
-  - amd64
-  - armv7
   - aarch64
-  - x86_64
+  - amd64
+  - armhf
+  - armv7
+  - i386
 startup: "application"
 boot: "auto"
 host_network: true
@@ -35,8 +36,8 @@ schema:
   tv_dir: str
   debug: bool
   log_level:
-    type: "list"
-    items:
+    type: "select"
+    options:
       - debug
       - info
       - warning
@@ -44,8 +45,8 @@ schema:
   notify_on_success: bool
   notify_on_failure: bool
   notify_method:
-    type: "list"
-    items:
+    type: "select"
+    options:
       - email
       - webhook
   email_recipient: str
