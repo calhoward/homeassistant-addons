@@ -12,8 +12,13 @@ startup: "services"
 boot: "auto"
 ingress: true  # Enable ingress for the web UI
 
+timeout: 300  # Increase timeout to 5 minutes (300 seconds)
+
 panel_icon: "mdi:disc"  # Icon to show in the sidebar
 panel_title: "ARM Web UI"  # Title for the sidebar entry
+
+ports:
+  8080/tcp: 8080  # Expose port 8080 for the ARM Web UI
 
 # Ensure device access and privileges for hardware interaction
 privileged:
