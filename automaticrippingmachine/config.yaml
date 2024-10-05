@@ -1,7 +1,7 @@
 name: "Automatic Ripping Machine"
 version: "0.1.0"
 slug: "automatic_ripping_machine"
-description: "Barebones ARM configuration"
+description: "MVP Automatic Ripping Machine"
 arch:
   - aarch64
   - amd64
@@ -12,10 +12,6 @@ startup: "application"
 boot: "auto"
 options: {}
 schema:
-  devices:
-    description: "List of paths to USB devices"
-    type: "list"
-    required: true
   log_level:
     description: "Log level"
     type: "select"
