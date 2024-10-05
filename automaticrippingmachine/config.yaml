@@ -17,9 +17,6 @@ timeout: 300  # Increase timeout to 5 minutes (300 seconds)
 panel_icon: "mdi:disc"  # Icon to show in the sidebar
 panel_title: "ARM Web UI"  # Title for the sidebar entry
 
-# Add watchdog to monitor ARM's health by checking the web UI
-watchdog: "http://{host}:{port}"
-
 # Ensure device access and privileges for hardware interaction
 privileged:
   - SYS_ADMIN
