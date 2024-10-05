@@ -12,7 +12,6 @@ startup: "application"
 boot: "auto"
 ingress: true  # Enable ingress for the web UI
 
-ingress_port: 8080  # Port for the ARM web UI
 panel_icon: "mdi:disc"  # Icon to show in the sidebar
 panel_title: "ARM Web UI"  # Title for the sidebar entry
 
