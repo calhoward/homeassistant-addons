@@ -8,6 +8,9 @@ RUN rm /etc/my_init.d/10_syslog-ng.init
 RUN mkdir -p /etc/arm/config && \
     chown -R 1000:1000 /etc/arm
 
+# Install a compatible version of werkzeug
+RUN pip3 install werkzeug==1.0.1
+
 # Run udevd in the foreground to ensure the service is available inside the container
 RUN /lib/systemd/systemd-udevd --daemon && udevadm trigger
 
