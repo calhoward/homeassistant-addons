@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-# Start ARM (this is the command to start ARM, make sure it's correct)
+# Start ARM
 echo "Starting ARM service..."
 
-# Start the ARM service
+# Start the ARM service in the background
 /sbin/my_init &
 
 # Wait until the ARM web UI is ready
@@ -13,7 +13,7 @@ while ! curl -s http://127.0.0.1:8080 > /dev/null; do
   sleep 2
 done
 
-# Signal to Home Assistant that the service is ready
+# Signal that the ARM web UI is ready
 echo "ARM web UI is ready."
 
 # Keep the container running
