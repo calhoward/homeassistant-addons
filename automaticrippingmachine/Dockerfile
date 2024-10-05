@@ -11,8 +11,8 @@ RUN mkdir -p /etc/arm/config && \
 # Install a compatible version of werkzeug
 RUN pip3 install werkzeug==1.0.1
 
-# Run udevd in the foreground to ensure the service is available inside the container
-RUN /lib/systemd/systemd-udevd --daemon && udevadm trigger
+# Remove the udev initialization script to prevent starting it
+RUN rm /etc/my_init.d/start_udev.sh
 
 # Set the default entrypoint to ARM's built-in process manager
 CMD ["/sbin/my_init"]
