@@ -13,8 +13,10 @@ boot: "auto"
 options: {}
 schema: {}
 
-# Allow the container privileged access to the host devices (e.g., DVD drive)
-privileged: true
+# Allow the container privileged access to the host devices (updated format)
+privileged:
+  - true
 
+# Use the correct format for devices: a list of paths
 devices:
-  - /dev:/dev:r
+  - /dev
