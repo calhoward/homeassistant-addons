@@ -5,18 +5,17 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Install ARM dependencies
+# Install ARM dependencies using Alpine package manager
 RUN \
-    apt-get update && apt-get install -y \
-    ffmpeg \
-    makemkv-bin \
-    handbrake-cli \
-    python3 \
-    python3-pip \
-    git \
-    sqlite3 \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+    apk add --no-cache \
+        ffmpeg \
+        makemkv \
+        handbrake \
+        python3 \
+        py3-pip \
+        git \
+        sqlite \
+        curl
 
 # Install Python packages required by ARM
 RUN pip3 install \
@@ -38,7 +37,7 @@ RUN mkdir -p /etc/arm/config && chown -R 1000:1000 /etc/arm
 RUN rm -f /etc/my_init.d/start_udev.sh
 RUN rm -f /etc/my_init.d/10_syslog-ng.init
 
-# S6 Overlay stage 2 hook for lifecycle management (Optional)
+# S6 Overlay stage 2 hook for lifecycle management
 ENV S6_STAGE2_HOOK=/etc/s6-overlay/scripts/stage2_hook.sh
 
 # Expose ARM service on port 8080 (handled by ingress)
