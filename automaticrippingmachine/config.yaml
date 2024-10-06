@@ -4,18 +4,17 @@ slug: automatic_ripping_machine
 description: "Home Assistant add-on to run Automatic Ripping Machine (ARM)"
 arch:
   - aarch64
-  - armv7
   - amd64
-  - i386
-  - armhf
+  - armv7
 startup: "services"
 boot: "auto"
-ingress: true  # Enable ingress for the web UI
+ingress: true
+ingress_port: 0  # Dynamic ingress port assignment
+panel_icon: "mdi:disc"
+panel_title: "ARM Web UI"
 
-timeout: 300  # Increase timeout to 5 minutes (300 seconds)
-
-panel_icon: "mdi:disc"  # Icon to show in the sidebar
-panel_title: "ARM Web UI"  # Title for the sidebar entry
+# Networking optimizations
+host_network: true  # Use host network to avoid Docker network issues
 
 # Ensure device access and privileges for hardware interaction
 privileged:
@@ -24,6 +23,9 @@ privileged:
   - SYS_RESOURCE
   - DAC_READ_SEARCH
 
-# Provide access to /dev for the container to detect devices like DVD drives
+# Device access
 devices:
   - /dev
+
+# DBus access (if needed)
+host_dbus: true
