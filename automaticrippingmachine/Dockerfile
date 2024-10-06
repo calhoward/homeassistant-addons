@@ -1,11 +1,10 @@
-# Use a Debian-based Home Assistant base image for better compatibility
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:bookworm
-FROM ${BUILD_FROM}
+# Use Ubuntu as the base image for better compatibility with apt-get
+FROM ubuntu:20.04
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Install ARM dependencies using Debian package manager (apt-get)
+# Install ARM dependencies using apt-get
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     makemkv-bin \
@@ -19,7 +18,8 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     libavcodec-dev \
     libavutil-dev \
-    libssl-dev
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Python packages required by ARM
 RUN pip3 install \
