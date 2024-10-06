@@ -1,37 +1,25 @@
-# Use the Home Assistant base image for better integration
-ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:16.3.2
+# Use a Debian-based Home Assistant base image for better compatibility
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:bookworm
 FROM ${BUILD_FROM}
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Install dependencies using Alpine package manager
-RUN \
-    apk add --no-cache \
-        ffmpeg \
-        handbrake \
-        python3 \
-        py3-pip \
-        git \
-        sqlite \
-        curl \
-        build-base \
-        eudev-dev \
-        expat-dev \
-        openssl-dev \
-        libavcodec-dev \
-        libavutil-dev \
-        libssl1.1
-
-# Install MakeMKV manually from the official source
-RUN \
-    curl -O http://www.makemkv.com/download/makemkv-bin-1.16.5.tar.gz \
-    && curl -O http://www.makemkv.com/download/makemkv-oss-1.16.5.tar.gz \
-    && tar -zxvf makemkv-bin-1.16.5.tar.gz \
-    && tar -zxvf makemkv-oss-1.16.5.tar.gz \
-    && cd makemkv-oss-1.16.5 && make && make install \
-    && cd ../makemkv-bin-1.16.5 && make && make install \
-    && rm -rf /makemkv-oss-1.16.5 /makemkv-bin-1.16.5
+# Install ARM dependencies using Debian package manager (apt-get)
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    makemkv-bin \
+    handbrake-cli \
+    python3 \
+    python3-pip \
+    git \
+    sqlite3 \
+    curl \
+    build-essential \
+    pkg-config \
+    libavcodec-dev \
+    libavutil-dev \
+    libssl-dev
 
 # Install Python packages required by ARM
 RUN pip3 install \
