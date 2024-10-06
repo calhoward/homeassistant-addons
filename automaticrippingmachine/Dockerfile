@@ -4,11 +4,9 @@ FROM ubuntu:20.04
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Add the MakeMKV PPA and install dependencies
+# Install dependencies using apt-get
 RUN apt-get update && apt-get install -y \
     software-properties-common \
-    && add-apt-repository ppa:heyarje/makemkv-beta \
-    && apt-get update && apt-get install -y \
     ffmpeg \
     makemkv-bin \
     makemkv-oss \
@@ -26,6 +24,11 @@ RUN apt-get update && apt-get install -y \
     libexpat1-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Install S6 Overlay
+RUN curl -L -o /tmp/s6-overlay.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.2/s6-overlay-amd64.tar.gz \
+    && tar -xzf /tmp/s6-overlay.tar.gz -C / \
+    && rm /tmp/s6-overlay.tar.gz
+
 # Install Python packages required by ARM
 RUN pip3 install \
     werkzeug==1.0.1 \
@@ -42,15 +45,19 @@ RUN git clone https://github.com/automatic-ripping-machine/automatic-ripping-mac
 # Make necessary directories for ARM
 RUN mkdir -p /etc/arm/config && chown -R 1000:1000 /etc/arm
 
-# Remove udev and syslog-ng to prevent issues
+# Remove unnecessary init scripts
 RUN rm -f /etc/my_init.d/start_udev.sh
 RUN rm -f /etc/my_init.d/10_syslog-ng.init
 
+# Copy root filesystem
+COPY rootfs/ /
+
 # S6 Overlay stage 2 hook for lifecycle management
+ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV S6_STAGE2_HOOK=/etc/s6-overlay/scripts/stage2_hook.sh
 
 # Expose ARM service on port 8080 (handled by ingress)
 EXPOSE 8080
 
-# Start ARM using the default init system
-CMD ["/sbin/my_init"]
+# Start S6 Overlay
+ENTRYPOINT ["/init"]
