@@ -4,9 +4,14 @@ FROM ubuntu:20.04
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Install dependencies using apt-get
+# Add the MakeMKV PPA and install dependencies
 RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    && add-apt-repository ppa:heyarje/makemkv-beta \
+    && apt-get update && apt-get install -y \
     ffmpeg \
+    makemkv-bin \
+    makemkv-oss \
     handbrake-cli \
     python3 \
     python3-pip \
@@ -19,19 +24,7 @@ RUN apt-get update && apt-get install -y \
     libavutil-dev \
     libssl-dev \
     libexpat1-dev \
-    libc6-dev \
-    libncurses5-dev \
-    libtinfo5 \
     && rm -rf /var/lib/apt/lists/*
-
-# Download and install MakeMKV from source
-RUN curl -O http://www.makemkv.com/download/makemkv-bin-1.16.5.tar.gz \
-    && curl -O http://www.makemkv.com/download/makemkv-oss-1.16.5.tar.gz \
-    && tar -zxvf makemkv-bin-1.16.5.tar.gz \
-    && tar -zxvf makemkv-oss-1.16.5.tar.gz \
-    && cd makemkv-oss-1.16.5 && make && make install \
-    && cd ../makemkv-bin-1.16.5 && make && make install \
-    && rm -rf /makemkv-oss-1.16.5 /makemkv-bin-1.16.5
 
 # Install Python packages required by ARM
 RUN pip3 install \
