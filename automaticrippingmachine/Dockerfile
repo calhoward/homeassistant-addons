@@ -1,15 +1,48 @@
-# Use the official Automatic Ripping Machine Docker image as the base
-FROM automaticrippingmachine/automatic-ripping-machine:latest
+# Use the Home Assistant base image for better integration
+ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:16.3.2
+FROM ${BUILD_FROM}
+
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# Install ARM dependencies
+RUN \
+    apt-get update && apt-get install -y \
+    ffmpeg \
+    makemkv-bin \
+    handbrake-cli \
+    python3 \
+    python3-pip \
+    git \
+    sqlite3 \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages required by ARM
+RUN pip3 install \
+    werkzeug==1.0.1 \
+    flask==1.1.2 \
+    jinja2==2.11.3 \
+    itsdangerous==1.1.0 \
+    markupsafe==1.1.1 \
+    flask_sqlalchemy==2.4.4 \
+    sqlalchemy==1.3.23
+
+# Clone ARM repository and set up
+RUN git clone https://github.com/automatic-ripping-machine/automatic-ripping-machine.git /opt/arm
+
+# Make necessary directories for ARM
+RUN mkdir -p /etc/arm/config && chown -R 1000:1000 /etc/arm
 
 # Remove udev and syslog-ng to prevent issues
 RUN rm -f /etc/my_init.d/start_udev.sh
 RUN rm -f /etc/my_init.d/10_syslog-ng.init
 
-# Ensure that all required directories and permissions are set for ARM
-RUN mkdir -p /etc/arm/config && chown -R 1000:1000 /etc/arm
+# S6 Overlay stage 2 hook for lifecycle management (Optional)
+ENV S6_STAGE2_HOOK=/etc/s6-overlay/scripts/stage2_hook.sh
 
-# Install compatible Flask and SQLAlchemy versions to avoid dependency issues
-RUN pip3 install werkzeug==1.0.1 flask==1.1.2 jinja2==2.11.3 itsdangerous==1.1.0 markupsafe==1.1.1 flask_sqlalchemy==2.4.4 sqlalchemy==1.3.23
+# Expose ARM service on port 8080 (handled by ingress)
+EXPOSE 8080
 
-# Start the ARM service directly using the default entrypoint of the ARM image
+# Start ARM using the default init system
 CMD ["/sbin/my_init"]
