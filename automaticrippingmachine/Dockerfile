@@ -5,17 +5,33 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Install ARM dependencies using Alpine package manager
+# Install dependencies using Alpine package manager
 RUN \
     apk add --no-cache \
         ffmpeg \
-        makemkv \
         handbrake \
         python3 \
         py3-pip \
         git \
         sqlite \
-        curl
+        curl \
+        build-base \
+        eudev-dev \
+        expat-dev \
+        openssl-dev \
+        libavcodec-dev \
+        libavutil-dev \
+        libssl1.1
+
+# Install MakeMKV manually from the official source
+RUN \
+    curl -O http://www.makemkv.com/download/makemkv-bin-1.16.5.tar.gz \
+    && curl -O http://www.makemkv.com/download/makemkv-oss-1.16.5.tar.gz \
+    && tar -zxvf makemkv-bin-1.16.5.tar.gz \
+    && tar -zxvf makemkv-oss-1.16.5.tar.gz \
+    && cd makemkv-oss-1.16.5 && make && make install \
+    && cd ../makemkv-bin-1.16.5 && make && make install \
+    && rm -rf /makemkv-oss-1.16.5 /makemkv-bin-1.16.5
 
 # Install Python packages required by ARM
 RUN pip3 install \
